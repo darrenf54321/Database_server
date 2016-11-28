@@ -8,9 +8,12 @@ class DataBase < Sinatra::Base
     'Hello DataBase!'
   end
 
-  post '/input' do
-    session[:key] = params[:value]
-  end
+  get '/set' do
+  key = params.flatten[-2]
+  value = params.flatten[-1]
+  session[key] = value
+  "key value page is #{key}: #{value}"
+end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
